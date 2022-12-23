@@ -1,2 +1,28 @@
 ---
--
+# Install python for Ansible
+- name: "install python for Ansible."
+  become: yes
+  apt:
+    name: python3
+    state: present
+
+# Install Node.js and npm
+- name: "install Node.js"
+  become: yes
+  apt:
+    name: nodejs
+    state: present
+
+- name: "install  npm."
+  become: yes
+  apt:
+    name: npm
+    state: present
+
+# Install PM2
+- name: "install PM2."
+  become: yes
+  npm:
+    name: pm2
+    global: yes
+# VS Code Extension Version: 1.5.0
