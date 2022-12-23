@@ -114,7 +114,6 @@ jobs:
             npm install
             npm run test
       - slack/notify:
-          message: "Back-end tests failed"
           event: fail
 
   scan-frontend:
