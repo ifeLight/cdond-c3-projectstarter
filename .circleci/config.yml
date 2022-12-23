@@ -84,6 +84,7 @@ jobs:
           name: Test front-end
           command: |
             cd frontend
+            npm install
             npm run test
 
   test-backend:
@@ -101,6 +102,7 @@ jobs:
           name: Test back-end
           command: |
             cd backend
+            npm install
             npm run test
 
   # scan-frontend:
@@ -289,10 +291,10 @@ workflows:
     jobs:
       - build-frontend
       - build-backend
-      # - test-frontend:
-      #     requires: [build-frontend]
-      # - test-backend:
-      #     requires: [build-backend]
+      - test-frontend:
+          requires: [build-frontend]
+      - test-backend:
+          requires: [build-backend]
       # - scan-backend:
       #     requires: [build-backend]
       # - scan-frontend:
