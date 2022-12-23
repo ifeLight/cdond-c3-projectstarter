@@ -13,7 +13,7 @@
     name: nodejs
     state: present
 
-- name: "install  npm."
+- name: "install npm."
   become: yes
   apt:
     name: npm
