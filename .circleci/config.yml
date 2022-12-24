@@ -80,6 +80,8 @@ jobs:
             # curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             # apk add --update nodejs npm
             apk add nodejs-current npm
+            node --version
+            npm --version
       # install aws cli
       - run:
           name: Install aws cli
