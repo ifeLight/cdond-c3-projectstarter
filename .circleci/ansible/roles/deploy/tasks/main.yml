@@ -13,8 +13,7 @@
 
 - name: "Unzip files as backend folder"
   shell: |
-    cd ~/backend
-    tar -xzf artifact.tar.gz
+    cd ~/backend && tar -xzf artifact.tar.gz
 
 - name: "Install dependencies"
   shell: |
