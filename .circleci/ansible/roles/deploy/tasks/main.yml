@@ -1,0 +1,19 @@
+---
+- name: "Copy files to server"
+  become: yes
+  copy:
+    src: ~/project/backend
+    dest: /home/project
+
+- name: "Install dependencies"
+  shell: |
+    cd /home/project/backend
+    npm install
+
+- name: "Run the app with PM2"
+  shell: |
+    cd /home/project/backend
+    pm2 stop default
+    pm2 start npm -- start
+
+# VS Code Extension Version: 1.5.0
