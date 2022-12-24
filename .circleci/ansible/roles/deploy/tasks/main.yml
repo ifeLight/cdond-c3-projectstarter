@@ -2,17 +2,22 @@
 - name: "Copy files to server"
   become: yes
   copy:
-    src: ~/project/backend
+    src: ~/project/artifact.tar.gz
     dest: /home/project
+
+- name: "Unzip files as backend folder"
+  shell: |
+    cd /home/project
+    tar -xzf artifact.tar.gz
 
 - name: "Install dependencies"
   shell: |
-    cd /home/project/backend
+    cd /home/project
     npm install
 
 - name: "Run the app with PM2"
   shell: |
-    cd /home/project/backend
+    cd /home/project
     pm2 stop default
     pm2 start npm -- start
 
