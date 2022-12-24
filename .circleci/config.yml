@@ -335,7 +335,7 @@ jobs:
   deploy-backend:
     docker:
       # Docker image here that supports Ansible
-      - image: amazon/aws-cli:2.0.30
+      - image: cimg/base:2021.04
     steps:
       # Checkout code from git
       - checkout
@@ -373,11 +373,11 @@ jobs:
             curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             apk add --update nodejs npm
       # install aws cli
-      # - run:
-      #     name: Install aws cli
-      #     command: |
-      #       # your code here
-      #       apk add --no-cache aws-cli
+      - run:
+          name: Install aws cli
+          command: |
+            # your code here
+            apk add --no-cache aws-cli
       - run:
           name: Deploy backend
           command: |
