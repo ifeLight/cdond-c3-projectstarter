@@ -335,7 +335,7 @@ jobs:
   deploy-backend:
     docker:
       # Docker image here that supports Ansible
-      - image: python:3.7-alpine3.11
+      - image: amazon/aws-cli:2.0.30
     steps:
       # Checkout code from git
       - checkout
@@ -350,11 +350,11 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
-      # - run:
-      #     name: Install python
-      #     command: |
-      #       # your code here
-      #       apk add --update python3
+      - run:
+          name: Install python
+          command: |
+            # your code here
+            apk add --update python3
       # install ansible
       - run:
           name: Install ansible
@@ -369,11 +369,11 @@ jobs:
             curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             apk add --update nodejs npm
       # install aws cli
-      - run:
-          name: Install aws cli
-          command: |
-            # your code here
-            apk add --no-cache aws-cli
+      # - run:
+      #     name: Install aws cli
+      #     command: |
+      #       # your code here
+      #       apk add --no-cache aws-cli
       - run:
           name: Install tar utility
           command: |
