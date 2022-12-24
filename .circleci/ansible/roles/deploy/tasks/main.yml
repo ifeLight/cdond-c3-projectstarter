@@ -5,11 +5,31 @@
     path: ~/backend
     state: directory
 
+- name: "List files in home directory"
+  find:
+    paths: ~/
+    patterns: "*"
+  register: files
+
+- name: "Print files"
+  debug:
+    msg: "{{ files.files }}"
+
 - name: "Copy files to server"
   become: true
   copy:
     src: ~/project/artifact.tar.gz
     dest: ~/backend
+
+- name: "List files in backend directory"
+  find:
+    paths: ~/backend
+    patterns: "*"
+  register: files
+
+- name: "Print files"
+  debug:
+    msg: "{{ files.files }}"
 
 - name: "Unzip files as backend folder"
   shell: |
