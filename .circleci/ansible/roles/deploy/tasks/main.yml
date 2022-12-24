@@ -1,23 +1,29 @@
 ---
+- name: "Make project directory"
+  become: yes
+  file:
+    path: ~/project
+    state: directory
+
 - name: "Copy files to server"
   become: yes
   copy:
     src: ~/project/artifact.tar.gz
-    dest: /home/project
+    dest: ~/project
 
 - name: "Unzip files as backend folder"
   shell: |
-    cd /home/project
+    cd ~/project
     tar -xzf artifact.tar.gz
 
 - name: "Install dependencies"
   shell: |
-    cd /home/project
+    cd ~/project
     npm install
 
 - name: "Run the app with PM2"
   shell: |
-    cd /home/project
+    cd ~/project
     pm2 stop default
     pm2 start npm -- start
 
