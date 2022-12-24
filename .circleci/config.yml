@@ -343,6 +343,10 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "29:5f:46:41:c3:63:2f:43:dd:84:79:2d:2f:35:96:86"
+      - run:
+          name: Install tar utility
+          command: |
+            yum install -y tar gzip
       # attach workspace
       - attach_workspace:
           at: ~/
@@ -374,10 +378,6 @@ jobs:
       #     command: |
       #       # your code here
       #       apk add --no-cache aws-cli
-      - run:
-          name: Install tar utility
-          command: |
-            yum install -y tar gzip
       - run:
           name: Deploy backend
           command: |
