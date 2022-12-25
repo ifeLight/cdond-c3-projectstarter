@@ -32,17 +32,17 @@
 #     msg: { { backendFiles.files } }
 
 - name: "Unzip files as backend folder"
+  command: tar -xzf artifact.tar.gz
   shell:
-    command: tar -xzf artifact.tar.gz
     chdir: ~/backend
 
 - name: "Install dependencies"
+  command: npm install
   shell:
-    command: npm install
     chdir: ~/backend
 
 - name: "Run the app with PM2"
+  command: pm2 stop default && pm2 start npm -- start
   shell:
-    command: pm2 stop default && pm2 start npm -- start
     chdir: ~/backend
 # VS Code Extension Version: 1.5.0
