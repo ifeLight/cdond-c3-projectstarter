@@ -20,6 +20,7 @@ commands:
             apk add --no-cache aws-cli
             # delete cloudformation stacks
             aws cloudformation delete-stack --stack-name "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}"
+            aws s3 rm s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
             aws cloudformation delete-stack --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}"
 
   revert-migrations:
@@ -472,10 +473,6 @@ jobs:
           command: |
             # your code here
             apk add --no-cache aws-cli
-      - run:
-          name: Install tar utility
-          command: |
-            yum install -y tar gzip
       - run:
           name: Get backend url
           command: |
