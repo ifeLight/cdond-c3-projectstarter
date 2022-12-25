@@ -9,27 +9,27 @@
   find:
     paths: ~/
     patterns: "*"
-#   register: files
+  register: directoryFiles
 
-# - name: "Print files"
-#   debug:
-#     msg: "{{ files.files }}"
+- name: "Print files"
+  debug:
+    msg: "{{ directoryFiles }}"
 
 - name: "Copy files to server"
   become: true
   copy:
     src: ~/project/artifact.tar.gz
-    dest: ~/backend
+    dest: ~/backend/artifact.tar.gz
 
 - name: "List files in backend directory"
   find:
     paths: ~/backend
     patterns: "*"
-#   register: files
+  register: backendFiles
 
-# - name: "Print files"
-#   debug:
-#     msg: "{{ files.files }}"
+- name: "Print files"
+  debug:
+    msg: { { backendFiles } }
 
 - name: "Unzip files as backend folder"
   shell: |
