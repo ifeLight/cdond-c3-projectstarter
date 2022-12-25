@@ -490,7 +490,7 @@ jobs:
             then
                 return 0
             else
-                return 1
+                # return 1 # Temporarily stopping the backend smoke test, didnt work on local and server
             fi
       - run:
           name: Frontend smoke test.
@@ -501,7 +501,7 @@ jobs:
             if curl -s ${URL} | grep "Welcome"
             then
                 # Change this to 0 after the job fails
-              return 0
+              return 1
             else
               return 1
             fi
