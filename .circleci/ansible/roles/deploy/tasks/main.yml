@@ -5,15 +5,15 @@
     path: ~/backend
     state: directory
 
-- name: "List files in home directory"
-  find:
-    paths: ~/
-    patterns: "*"
-  register: directoryFiles
+# - name: "List files in home directory"
+#   find:
+#     paths: ~/
+#     patterns: "*"
+#   register: directoryFiles
 
-- name: "Print files"
-  debug:
-    msg: "{{ directoryFiles }}"
+# - name: "Print files"
+#   debug:
+#     msg: "{{ directoryFiles.files }}"
 
 - name: "Copy files to server"
   become: true
@@ -21,26 +21,28 @@
     src: ~/project/artifact.tar.gz
     dest: ~/backend/artifact.tar.gz
 
-- name: "List files in backend directory"
-  find:
-    paths: ~/backend
-    patterns: "*"
-  register: backendFiles
+# - name: "List files in backend directory"
+#   find:
+#     paths: ~/backend
+#     patterns: "*"
+#   register: backendFiles
 
-- name: "Print files"
-  debug:
-    msg: { { backendFiles } }
+# - name: "Print files"
+#   debug:
+#     msg: { { backendFiles.files } }
 
 - name: "Unzip files as backend folder"
-  shell: |
-    cd ~/backend && tar -xzf artifact.tar.gz
+  shell:
+    command: tar -xzf artifact.tar.gz
+    chdir: ~/backend
 
 - name: "Install dependencies"
-  shell: |
-    cd ~/backend && npm install
+  shell:
+    command: npm install
+    chdir: ~/backend
 
 - name: "Run the app with PM2"
-  shell: |
-    cd ~/backend && pm2 stop default && pm2 start npm -- start
-
+  shell:
+    command: pm2 stop default && pm2 start npm -- start
+    chdir: ~/backend
 # VS Code Extension Version: 1.5.0
