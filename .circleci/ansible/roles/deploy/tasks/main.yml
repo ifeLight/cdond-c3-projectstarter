@@ -9,11 +9,11 @@
   find:
     paths: ~/
     patterns: "*"
-  register: files
+#   register: files
 
-- name: "Print files"
-  debug:
-    msg: "{{ files.files }}"
+# - name: "Print files"
+#   debug:
+#     msg: "{{ files.files }}"
 
 - name: "Copy files to server"
   become: true
@@ -25,11 +25,11 @@
   find:
     paths: ~/backend
     patterns: "*"
-  register: files
+#   register: files
 
-- name: "Print files"
-  debug:
-    msg: "{{ files.files }}"
+# - name: "Print files"
+#   debug:
+#     msg: "{{ files.files }}"
 
 - name: "Unzip files as backend folder"
   shell: |
