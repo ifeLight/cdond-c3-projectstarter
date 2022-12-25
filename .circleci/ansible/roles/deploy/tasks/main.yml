@@ -1,9 +1,11 @@
 ---
 - name: "Make backend directory"
   become: true
-  file:
-    path: ~/backend
+  ansible.builtin.file:
+    path: "~/backend"
     state: directory
+    mode: 0755
+    owner: ubuntu
 
 # - name: "List files in home directory"
 #   find:
