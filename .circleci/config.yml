@@ -554,9 +554,12 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
-            apk update
-            apk add --update python3
-            apk add --no-cache aws-cli
+            # apk update
+            # apk add --update python3
+            # apk add --no-cache aws-cli
+            apt update
+            apt install -y python3-pip
+            pip3 install awscli
       - run:
           name: Get old stack workflow id
           command: |
