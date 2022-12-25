@@ -1,11 +1,11 @@
 ---
-- name: "Make backend directory"
-  become: true
-  ansible.builtin.file:
-    path: "~/backend"
-    state: directory
-    mode: 0755
-    owner: ubuntu
+# - name: "Make backend directory" # Creating a directory not working currently
+#   become: true
+#   ansible.builtin.file:
+#     path: "~/backend"
+#     state: directory
+#     mode: 0755
+#     owner: ubuntu
 
 # - name: "List files in home directory"
 #   find:
@@ -21,7 +21,7 @@
   become: true
   copy:
     src: ~/project/artifact.tar.gz
-    dest: ~/backend/artifact.tar.gz
+    dest: ~/artifact.tar.gz
 
 # - name: "List files in backend directory"
 #   find:
@@ -36,15 +36,15 @@
 - name: "Unzip files as backend folder"
   command: tar -xzf artifact.tar.gz
   args:
-    chdir: ~/backend
+    chdir: ~/
 
 - name: "Install dependencies"
   command: npm install
   args:
-    chdir: ~/backend
+    chdir: ~/
 
 - name: "Run the app with PM2"
   command: pm2 stop default && pm2 start npm -- start
   args:
-    chdir: ~/backend
+    chdir: ~/
 # VS Code Extension Version: 1.5.0
