@@ -546,7 +546,7 @@ jobs:
   cleanup:
     docker:
       # Docker image here
-      - image: alpine:3.12.0
+      - image: ubuntu:18.04
     steps:
       # Checkout code from git
       - checkout
