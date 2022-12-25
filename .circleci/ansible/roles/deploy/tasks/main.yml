@@ -33,16 +33,16 @@
 
 - name: "Unzip files as backend folder"
   command: tar -xzf artifact.tar.gz
-  shell:
+  args:
     chdir: ~/backend
 
 - name: "Install dependencies"
   command: npm install
-  shell:
+  args:
     chdir: ~/backend
 
 - name: "Run the app with PM2"
   command: pm2 stop default && pm2 start npm -- start
-  shell:
+  args:
     chdir: ~/backend
 # VS Code Extension Version: 1.5.0
