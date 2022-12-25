@@ -36,13 +36,12 @@ commands:
           when: on_fail
           command: |
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
-            SUCCESS = $(curl https://kvdb.io/7fY5ruHLePaBMmBvGNsRkS/migration_${CIRCLE_WORKFLOW_ID:0:7} --insecure)
+            export SUCCESS = $(curl https://kvdb.io/7fY5ruHLePaBMmBvGNsRkS/migration_${CIRCLE_WORKFLOW_ID:0:7} --insecure)
             if(( $SUCCESS==1 ));
             then
               cd ~/project/backend
               npm install
               npm run migrations:revert
-              exit 1
             fi
 
 jobs:
@@ -481,6 +480,7 @@ jobs:
               --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --query "Reservations[*].Instances[*].PublicIpAddress" \
               --output text)
+            echo "${BACKEND_IP}"
       - run:
           name: Backend smoke test.
           command: |
