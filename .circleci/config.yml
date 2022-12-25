@@ -36,7 +36,7 @@ commands:
           when: on_fail
           command: |
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
-            export SUCCESS = $(curl https://kvdb.io/7fY5ruHLePaBMmBvGNsRkS/migration_${CIRCLE_WORKFLOW_ID:0:7} --insecure)
+            export SUCCESS=$(curl https://kvdb.io/7fY5ruHLePaBMmBvGNsRkS/migration_${CIRCLE_WORKFLOW_ID:0:7} --insecure)
             if(( $SUCCESS==1 ));
             then
               cd ~/project/backend
@@ -473,19 +473,15 @@ jobs:
             # your code here
             apk add --no-cache aws-cli
       - run:
-          name: Get backend url
+          name: Backend smoke test.
           command: |
             # your code here
+            # Fetch and prepare the BACKEND_IP env var
             export BACKEND_IP=$(aws ec2 describe-instances \
               --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --query "Reservations[*].Instances[*].PublicIpAddress" \
               --output text)
             echo "${BACKEND_IP}"
-      - run:
-          name: Backend smoke test.
-          command: |
-            # your code here
-            # Fetch and prepare the BACKEND_IP env var
             export API_URL="http://${BACKEND_IP}:3030"
             echo "${API_URL}"
             if curl "${API_URL}/api/status" | grep "ok"
