@@ -1,2 +1,4 @@
 [URL01]=https://github.com/ifeLight/cdond-c3-projectstarter.git
-[URL02]=
+[URL02]=http://udapeople-135134d.s3-website-us-east-1.amazonaws.com
+[URL03]=https://d1krfzq28uunwk.cloudfront.net
+[URL04]=http://54.80.19.185:3030/api/status
