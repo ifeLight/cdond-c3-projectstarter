@@ -209,7 +209,7 @@ jobs:
             npm install
             npm audit fix --audit-level=critical --force
             npm audit fix --force
-            # npm audit --audit-level=critical # Tempoarary fix
+            npm audit --audit-level=critical
       - slack/notify:
           event: fail
 
@@ -492,7 +492,7 @@ jobs:
             then
                 return 0
             else
-                return 0
+                return 1
             fi
       - run:
           name: Frontend smoke test.

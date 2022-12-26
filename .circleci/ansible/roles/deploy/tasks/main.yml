@@ -1,5 +1,5 @@
 ---
-- name: "Make backend directory" # Creating a directory not working currently
+- name: "Make backend directory"
   become: true
   command: mkdir backend
 
