@@ -274,7 +274,7 @@ jobs:
           command: |
             # Your code here
             apk add --update ansible
-       - run:
+      - run:
           name: Install aws cli
           command: |
             # your code here
