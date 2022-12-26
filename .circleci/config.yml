@@ -546,7 +546,7 @@ jobs:
   cleanup:
     docker:
       # Docker image here
-      # Using Ubuntu because it works with complex shell commands
+      # Using Ubuntu because it works with complex commands on bash
       - image: ubuntu:18.04
     steps:
       # Checkout code from git
